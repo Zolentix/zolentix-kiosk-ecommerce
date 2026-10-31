@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: #0A0A0F;
+    color: #EDEDF2;
+  }
+
+  ::selection {
+    background-color: rgba(109, 74, 255, 0.3);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0A0A0F;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2A2A3C;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #6D4AFF;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-primary px-6 py-3
+           font-display font-semibold text-white transition-all duration-200
+           hover:opacity-90 hover:shadow-lg hover:shadow-kiosk-primary/25
+           active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-kiosk-border
+           bg-kiosk-surface px-6 py-3 font-display font-semibold text-kiosk-text
+           transition-all duration-200 hover:border-kiosk-primary/50 hover:bg-kiosk-surface-hover
+           active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2
+           text-kiosk-text-muted transition-all duration-200
+           hover:bg-kiosk-surface hover:text-kiosk-text;
+  }
+
+  .input-field {
+    @apply w-full rounded-lg border border-kiosk-border bg-kiosk-surface px-4 py-3
+           text-kiosk-text placeholder:text-kiosk-text-dim
+           focus:border-kiosk-primary focus:outline-none focus:ring-1 focus:ring-kiosk-primary/50
+           transition-colors;
+  }
+
+  .card {
+    @apply rounded-xl border border-kiosk-border bg-kiosk-surface
+           transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply card hover:border-kiosk-primary/30 hover:shadow-lg hover:shadow-kiosk-primary/5;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+
+  .section-heading {
+    @apply font-display text-2xl font-bold tracking-tight text-kiosk-text sm:text-3xl;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.3s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
