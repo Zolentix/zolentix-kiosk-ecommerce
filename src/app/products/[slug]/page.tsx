@@ -34,7 +34,7 @@ export default function ProductPage() {
         if (!data) { router.push('/products'); return }
         setProduct(data)
         const defaults: Record<string, string> = {}
-        const types = [...new Set(data.variants.map((v: Variant) => v.type))]
+        const types = Array.from(new Set<string>(data.variants.map((v: Variant) => v.type)))
         for (const type of types) {
           const first = data.variants.find((v: Variant) => v.type === type)
           if (first) defaults[type] = first.value
@@ -60,7 +60,7 @@ export default function ProductPage() {
   if (!product) return null
 
   const images = parseImages(product.images)
-  const variantTypes = [...new Set(product.variants.map((v) => v.type))]
+  const variantTypes = Array.from(new Set(product.variants.map((v) => v.type)))
   const variantStr = Object.values(selectedVariants).join(' / ') || undefined
   const variantPrice = product.variants.find(
     (v) => v.type === 'storage' && v.value === selectedVariants.storage
