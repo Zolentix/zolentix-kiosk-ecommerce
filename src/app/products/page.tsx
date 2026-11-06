@@ -52,6 +52,12 @@ function ProductsInner() {
   const [priceRange, setPriceRange] = useState(0)
   const [minRating, setMinRating] = useState('')
 
+  // Re-sync filters when the URL query changes (e.g. clicking header nav links)
+  useEffect(() => {
+    setCategory(searchParams.get('category') || '')
+    setSort(searchParams.get('sort') || 'newest')
+  }, [searchParams])
+
   useEffect(() => {
     setLoading(true)
     const params = new URLSearchParams()
