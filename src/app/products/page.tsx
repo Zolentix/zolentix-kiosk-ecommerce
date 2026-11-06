@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { ProductCard } from '@/components/ProductCard'
 import { cn } from '@/lib/utils'
@@ -42,7 +42,7 @@ const PRICE_RANGES = [
   { label: '$250+', min: '250', max: '' },
 ]
 
-export default function ProductsPage() {
+function ProductsInner() {
   const searchParams = useSearchParams()
   const [products, setProducts] = useState<Product[]>([])
   const [total, setTotal] = useState(0)
@@ -187,5 +187,13 @@ export default function ProductsPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">Loading…</div>}>
+      <ProductsInner />
+    </Suspense>
   )
 }
